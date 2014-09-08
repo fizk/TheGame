@@ -1,0 +1,23 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+
+@import "../public/vendor/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap";
+@import "compass/reset";
+@import "compass/typography/lists/horizontal-list";
+
+@import "helpers/variables";
+@import "helpers/extensions";
+@import "helpers/mixin";
+@import "helpers/fonts";
+
+
+@import "components/buttons";
+@import "components/layout";
+@import "components/gallery";
+@import "components/overlay";
+@import "components/form-carousel";
+@import "components/users";
+

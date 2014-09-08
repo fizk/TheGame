@@ -1,0 +1,185 @@
+@import "compass/typography/lists/horizontal-list";
+@import "compass/css3/transform";
+
+.gallery {
+  min-height:100%;
+}
+	ul.gallery-list{
+		@include horizontal-list;
+
+      width: 936px;
+      margin-left: auto;
+      margin-right: auto;
+
+      @include breakpoint-to(992px) {
+        width:619px;
+      }
+
+      @include breakpoint-to(648px) {
+        width:292px;
+      }
+
+		li{
+			@include horizontal-list-item(0);
+			width: 300px;
+
+            margin-left:18px;
+
+
+          &:nth-child(3n+1) {
+            margin-left:0;
+          }
+
+          @include breakpoint-to(992px) {
+
+            &:nth-child(3n+1) {
+              margin-left:18px;
+            }
+
+            &:nth-child(2n+1) {
+              margin-left:0;
+
+            }
+          }
+
+          @include breakpoint-to(648px) {
+
+              margin-left:4px!important;
+          }
+
+			nav{
+				margin-top: -20px;
+			}
+			figure{
+                padding:18px 0 18px 0;
+				position: relative;
+                cursor:pointer;
+
+				img{
+					display: none;
+				}
+
+
+
+
+              &:before{
+                content: url('images/playbtn.png');
+                color: yellow;
+                position: absolute;
+                top: 50%;
+                margin-top:-25%;
+                left: 50%;
+                margin-left:-35px;
+                cursor:pointer;
+                opacity:0;
+                @include transition(all 0.3s ease);
+                @include transform(scale(0.8));
+                pointer-events: none;
+              }
+
+              &:hover {
+                &:before {
+                  opacity:1!important;
+                  @include transform(scale(1));
+                }
+              }
+
+              figcaption {
+                padding:8px 0 8px 0;
+                h1 {
+                  font-family:'open-sans';
+                  color:$color-blue-dark;
+                  font-weight: 600;
+                  @include adjust-font-size-to(18px,1,$font-size-base);
+                }
+
+                h2 {
+                //  clear:left;
+                  font-family:'open-sans';
+                  font-weight: 600;
+                  @include adjust-font-size-to($font-size-base,1,$font-size-base);
+                }
+
+                p {
+                  @include adjust-font-size-to($font-size-small,1,$font-size-base);
+                  font-weight: normal;
+                  font-family: 'open-sans';
+
+                }
+
+                .btn {
+                  float:left;
+                  padding:13px;
+                  margin-right:8px;
+                }
+
+                a {
+                  float:none;
+                }
+              }
+
+
+
+
+			}
+
+
+		}
+	}
+
+.single-video {
+  min-height:100%;
+  padding-top:10%!important;
+
+  figure {
+    max-width:800px;
+    width:100%;
+    margin-left:auto;
+    margin-right:auto;
+
+    video {
+      width:100%!important;
+		max-width: 800px;
+    }
+
+    .btn-default {
+      float:right;
+      margin-top:8px;
+    }
+
+    figcaption {
+      float:left;
+      padding:8px 0 8px 0;
+      h1 {
+        font-family:'open-sans';
+        color:$color-blue-dark;
+        font-weight: 600;
+        @include adjust-font-size-to(18px,1,$font-size-base);
+      }
+
+      h2 {
+        //  clear:left;
+        font-family:'open-sans';
+        font-weight: 600;
+        @include adjust-font-size-to($font-size-base,1,$font-size-base);
+      }
+
+      p {
+        @include adjust-font-size-to($font-size-small,1,$font-size-base);
+        font-weight: normal;
+        font-family: 'open-sans';
+
+      }
+
+      .btn {
+        float:left;
+        padding:13px;
+        margin-right:8px;
+      }
+
+      a {
+        float:none;
+      }
+    }
+  }
+}

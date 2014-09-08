@@ -1,0 +1,14 @@
+
+@import "compass/css3/transition";
+
+	.container.upload-form{
+		overflow: hidden;
+	}
+	.form-carousel-container{
+		width: 300%;
+		@include transition(margin-left, .5s);
+		form{
+			width: 33.33%;
+			float: left;
+		}
+	}

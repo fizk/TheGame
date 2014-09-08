@@ -1,0 +1,32 @@
+{
+  "name": "n1",
+  "version": "0.0.1",
+  "description": "none",
+  "main": "none",
+  "keywords": [
+    "none"
+  ],
+  "authors": [
+    "einarvalur"
+  ],
+  "license": "MIT",
+  "homepage": "none",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+<<<<<<< HEAD
+    "requirejs": "~2.1.12",
+    "bootstrap-sass-official": "~3.1.1+2"
+=======
+    "bootstrap-sass-official": "~3.1.1+2",
+    "requirejs": "~2.1.12",
+    "videojs": "~4.6.1"
+>>>>>>> 888d13b1e433eb8aa3f290907976e0ebb8e7cd2f
+  }
+}

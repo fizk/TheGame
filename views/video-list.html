@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+
+
+{% block body %}
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+	var js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id)) return;
+	js = d.createElement(s); js.id = id;
+	js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=603285569768137&version=v2.0";
+	fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<main class="game gallery">
+	<ul class="gallery-list">
+		{% for video in videos %}
+		<li data-source="/video/status/{{video._id.toHexString()}}">
+			<figure>
+                <a href="/myndband/{{video._id.toHexString()}}">
+				{% for poster in video.posters %}
+				<img src="/images/{{poster}}" {% if loop.first %}style="display:block"{% endif %} />
+				{% endfor %}
+                </a>
+				{% if user && user.admin %}
+				<nav class="admin-controls">
+					<a href="/video/delete/{{video._id.toHexString()}}" class="btn btn-warning">eyða</a>
+				</nav>
+				{% endif %}
+				<figcaption>
+					<!--div class="fb-like" data-href="http://{{video.host}}/myndband/{{video._id.toHexString()}}" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div-->
+                    <!--a href="http://www.facebook.com/sharer.php?s=100&p[title]={{'Vegabréfaleikur N1'|url_encode}}&p[url]=http://{{video.host}}/myndband/{{video._id.toHexString()}}&p[summary]={{'Vegabréfaleikur N1'|url_encode}}&p[images][0]=http://{{video.host}}/images/{{video.posters[0]}}" class="btn btn-info facebook"><i class="icon-facebook"></i></a-->
+                    <h1><a href="/myndband/{{video._id.toHexString()}}">{{video.name}}</a></h1>
+                    <h2>{{video.date|date('d/m/y')}}</h2>
+                    <p>{{video.category|join(' , ')}}</p>
+				</figcaption>
+			</figure>
+		</li>
+	{% endfor %}
+	</ul>
+</main>
+{% endblock %}

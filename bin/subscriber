@@ -1,0 +1,164 @@
+/**
+ * Created by einarvalur on 26/05/14.
+ */
+var rabbitHub = require('rabbitmq-nodejs-client');
+var FFmpeg = require('fluent-ffmpeg');
+var nodemailer = require("nodemailer");
+var config = require('../config');
+var MongoClient = require('mongodb').MongoClient;
+var ObjectID = require('mongodb').ObjectID;
+var swig = require('swig');
+var fs = require('fs');
+var db = undefined;
+MongoClient.connect(config.dbUrl, function(err, database) {
+	if(err) throw err;
+	db = database;
+});
+
+
+//var transport = nodemailer.createTransport("SMTP",config.mail);
+var transport = nodemailer.createTransport("SMTP",{});
+
+var subHub = rabbitHub.create( { task: 'sub', channel: 'myChannel' } );
+subHub.on('connection', function(hub) {
+
+	console.log("Connection established to RabbitMQ");
+
+	hub.on('message', function(msg) {
+		var counter = 0;
+		var message = JSON.parse(msg);
+			console.log("- - - Message received - "+message._id+" - - -");
+
+
+
+
+		if( message.file.path && fs.existsSync('./'+message.file.path) ){
+
+
+			//WEBM
+			//	create a WebM file
+			new FFmpeg({ source: './'+message.file.path })
+				.toFormat('webm')
+				.withSize('800x?')
+				.withVideoBitrate('1500k')
+				.withAudioBitrate('128k')
+				.on('error',function(err, stdout, stderr){
+					console.error("\t- - - WebM ERROR - "+message._id+" - "+message.file.name);
+					console.error("\tstdout: " + stdout);
+					console.error("\tstderr: " + stderr);
+					console.error("\t- - - WebM ERROR - -");
+					++counter;
+				})
+				.on('end',function(){
+					db.collection('videos').update({_id:new ObjectID.createFromHexString(message._id)},{$push:{videos:{
+						codec: 'video/webm',
+						name: message.file.name+'.webm'
+					}}},function(){});
+					console.log("\tWebM:\t"+message._id+" - "+message.file.name);
+					++counter;
+				})
+				.saveToFile('./public/images/'+message.file.name+'.webm');
+
+
+			//OGG
+			//	create a ogg file
+			new FFmpeg({ source: './'+message.file.path })
+				.toFormat('ogg')
+				.withSize('800x?')
+				.withVideoBitrate('1500k')
+				.withAudioBitrate('128k')
+				.on('error',function(err, stdout, stderr){
+					console.error("\t- - - OGG ERROR - "+message._id+" - "+message.file.name);
+					console.error("\tstdout: " + stdout);
+					console.error("\tstderr: " + stderr);
+					console.error("\t- - - OGG ERROR - -");
+					++counter;
+				})
+				.on('end',function(){
+					db.collection('videos').update({_id:new ObjectID.createFromHexString(message._id)},{$push:{videos:{
+						codec: 'video/ogg',
+						name: message.file.name+'.ogg'
+					}}},function(){});
+					++counter;
+					swig.renderFile(__dirname+'/../views/email.html',{data:message},function(err, output){
+						transport.sendMail({
+							from: "n1 ✔ <n1@n1.is>", // sender address
+							to: message.email, // list of receivers
+							subject: "Myndbandið þitt er tilbúið", // Subject line
+							html: output,
+							attachments: [{
+								filename: "image.png",
+								filePath: "./public/stylesheets/images/n1-mail-logo.png",
+								cid: "unique@n1-logo" //same cid value as in the html img src
+							}]
+						},function(error,response){
+							if(error){
+								console.error("\t- - - EMAIL ERROR - "+message._id+" - "+message.file.name);
+								console.error("\t"+error.message);
+								console.error("\t- - - EMAIL ERROR - ");
+							}else{
+								console.log("\tEmail "+message._id+" - "+response.response);
+							}
+						});
+					});
+					console.log("\tOGG:\t"+message._id+" - "+message.file.name);
+				})
+				.saveToFile('./public/images/'+message.file.name+'.ogg');
+
+
+
+
+			//MP4
+			//	create a ogg file
+			new FFmpeg({ source: './'+message.file.path })
+				.toFormat('mp4')
+				.withSize('800x?')
+				.withVideoBitrate('1500k')
+				.withAudioBitrate('128k')
+				.addOption('-strict', 'experimental')
+				.on('error',function(err, stdout, stderr){
+					console.error("\t- - - MP4 ERROR - "+message._id+" - "+message.file.name);
+					console.error("\tstdout: " + stdout);
+					console.error("\tstderr: " + stderr);
+					console.error("\t- - - MP4 ERROR - -");
+					++counter;
+				})
+				.on('end',function(){
+					db.collection('videos').update({_id:new ObjectID.createFromHexString(message._id)},{$push:{videos:{
+						codec: 'video/mp4',
+						name: message.file.name+'.mp4'
+					}}},function(){});
+					++counter;
+					console.log("\tMp4:\t"+message._id+" - "+message.file.name);
+				})
+				.saveToFile('./public/images/'+message.file.name+'.mp4');
+
+			//THUMB
+			//	create a thumbnail image
+			new FFmpeg({ source: './'+message.file.path })
+				.withSize('320x240')
+				.on('error',function(err, stdout, stderr){
+					console.error("\t- - - THUMBNAILS ERROR - "+message._id+" - "+message.file.name);
+					console.error("\tstdout: " + stdout);
+					console.error("\tstderr: " + stderr);
+					console.error("\t- - - THUMBNAILS ERROR - -");
+					++counter;
+				})
+				.on('end', function(filenames) {
+					console.log("\tThumbnails:\t" +message._id + " - "+ filenames.join(', '));
+					db.collection('videos').update({_id:new ObjectID.createFromHexString(message._id)},{$push:{posters:{$each:filenames}}},function(){});
+					++counter;
+				})
+				.takeScreenshots(5, './public/images');
+		}else{
+			console.error("\t- - - FILE ERROR - "+message._id+" - "+message.file.name);
+			console.error("\t\t- - - file does not exists");
+		}
+
+
+
+
+	}.bind(this));
+
+});
+subHub.connect();

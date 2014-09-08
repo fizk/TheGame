@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<main role="main" class="users">
+
+	<div class="container">
+
+		<ul class="users-list">
+			{% for user in users %}
+			<li>
+				<img class="avatar" src="http://graph.facebook.com/{{user.id}}/picture?height=54&width=54&type=normal" />{{user.displayName}}
+
+				<a href="/users/admin/{{user._id.toHexString()}}" class="user-admin btn {% if user.admin %}btn-danger{% else %}btn-info{% endif %}">
+					{% if user.admin %}
+						afturkalla admin réttindi
+					{% else %}
+						gera að admin
+					{% endif %}
+				</a>
+
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+
+
+</main>
+
+{% endblock %}

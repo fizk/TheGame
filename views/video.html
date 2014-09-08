@@ -1,0 +1,47 @@
+{% extends 'layout.html' %}
+
+{% block meta %}
+<meta property="og:title" content="Vefabréfaleikur N1" />
+<meta property="og:description" content="{{video.name}} var að senda inn myndband í keppnisferðalag fjölskyldunnar hjá N1 og á möguleika á að vinna Samsung Galaxy S5 snjallsíma. Ert þú búin að kíkja á þrautirnar sem hægt er að leysa?" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://{{video.host}}/myndband/{{video._id.toHexString()}}" />
+<meta property="og:image" content="http://{{video.host}}/images/{{video.posters[0]}}" />
+
+{% for source in video.videos %}
+<meta property="og:video" content="http://{{video.host}}/images/{{source.name}}" />
+<meta property="og:video:type" content="{{source.codec}}" />
+{% endfor %}
+
+{% endblock %}
+
+{% block body %}
+<main class="game single-video">
+
+
+<figure class="paused container" data-source="/video/status/{{video._id.toHexString()}}">
+	<video controls poster="/" style="background-size: cover; background-image: url({%if video.videos.length==0%}/stylesheets/images/no-movie.png{% else %}/images/{{video.posters[0]}}{%endif%});">
+	<!--video controls poster="{%if video.videos.length==0%}/stylesheets/images/no-movie.png{% else %}/images/{{video.posters[0]}}{%endif%}"-->
+		{% for source in video.videos %}
+		<source src="/images/{{source.name}}" type="{{source.codec}}">
+		{% endfor %}
+	</video>
+    <figcaption>
+        <fb:like layout="standard" class="desktop-fb" action="like" show_faces="true" share="true"></fb:like>
+        <fb:like layout="button" class="mobile-fb" action="like" show_faces="true" share="true"></fb:like>
+
+        <h1><a href="/myndband/{{video._id.toHexString()}}">{{video.name}}</a></h1>
+        <h2>{{video.date|date('d/m/y')}}</h2>
+        <p>{{video.category|join(' , ')}}</p>
+    </figcaption>
+    <!--<a href="/senda-inn-myndband" class="btn btn-default">Senda inn myndband <i class="icon-video"></i></a>-->
+</figure>
+	<div class="container">
+		<ul class="thumb-images-list">
+			{% for img in video.posters %}
+			<li><img src="/images/{{img}}"></li>
+			{% endfor %}
+		</ul>
+	</div>
+
+</main>
+{% endblock %}

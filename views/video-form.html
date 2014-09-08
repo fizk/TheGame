@@ -1,0 +1,247 @@
+<form class="form-horizontal" role="form" method="post" action="/video/submit/{{video._id.toHexString()}}">
+	<input type="hidden" name="id" value="{{video._id.toHexString()}}">
+	<div class="form-group">
+		<label form="name">Nafn</label>
+		<input class="form-control" name="name" id="name" placeholder="Nafn" type="text" />
+	</div>
+	<div class="form-group">
+		<label form="email">Netfang</label>
+		<input class="form-control" name="email" id="email" type="email" />
+	</div>
+	<div class="form-group">
+		<label form="phone">Sími</label>
+		<input class="form-control" name="phone" id="phone" type="text" pattern="[0-9]{3}-[0-9]{4}" />
+	</div>
+
+	<div class="form-group">
+	<div class="col-md-6">
+		<h3>N1 flokkurinn</h3>
+		<div class="radio">
+			<label>
+				<input type="radio" name="N1-flokkurinn" value="Skókast">
+				Skókast
+			</label>
+		</div>
+		<div class="radio">
+			<label>
+				<input type="radio" name="N1-flokkurinn" value="Kexkökufés">
+				Kexkökufés
+			</label>
+		</div>
+		<div class="radio">
+			<label>
+				<input type="radio" name="N1-flokkurinn" value="Ekki trompast">
+				Ekki trompast
+			</label>
+		</div>
+		<div class="radio">
+			<label>
+				<input type="radio" name="N1-flokkurinn" value="Öfugur stafli">
+				Öfugur stafli
+			</label>
+		</div>
+		<div class="radio">
+			<label>
+				<input type="radio" name="N1-flokkurinn" value="Tengingaleikur">
+				Tengingaleikur
+			</label>
+		</div>
+		<div class="radio">
+			<label>
+				<input type="radio" name="N1-flokkurinn" value="Jón eplabóndi">
+				Jón eplabóndi
+			</label>
+		</div>
+		<div class="radio">
+			<label>
+				<input type="radio" name="N1-flokkurinn" value="Hangs">
+				Hangs
+			</label>
+		</div>
+
+		<h3>Sniðugi flokkurinn</h3>
+		<div class="radio">
+			<label>
+				<input type="radio" name="Sniðugi-flokkurinn" value="Skókast">
+				Skókast
+			</label>
+		</div>
+		<div class="radio">
+			<label>
+				<input type="radio" name="Sniðugi-flokkurinn" value="Kexkökufés">
+				Kexkökufés
+			</label>
+		</div>
+		<div class="radio">
+			<label>
+				<input type="radio" name="Sniðugi-flokkurinn" value="Ekki trompast">
+				Ekki trompast
+			</label>
+		</div>
+		<div class="radio">
+			<label>
+				<input type="radio" name="Sniðugi-flokkurinn" value="Öfugur stafli">
+				Öfugur stafli
+			</label>
+		</div>
+		<div class="radio">
+			<label>
+				<input type="radio" name="Sniðugi-flokkurinn" value="Tengingaleikur">
+				Tengingaleikur
+			</label>
+		</div>
+		<div class="radio">
+			<label>
+				<input type="radio" name="Sniðugi-flokkurinn" value="Jón eplabóndi">
+				Jón eplabóndi
+			</label>
+		</div>
+		<div class="radio">
+			<label>
+				<input type="radio" name="Sniðugi-flokkurinn" value="Hangs">
+				Hangs
+			</label>
+		</div>
+
+		<h3>Hraðaþrautin</h3>
+		<div class="radio">
+			<label>
+				<input type="radio" name="Hraðaþrautin" value="Skókast">
+				Skókast
+			</label>
+		</div>
+		<div class="radio">
+			<label>
+				<input type="radio" name="Hraðaþrautin" value="Kexkökufés">
+				Kexkökufés
+			</label>
+		</div>
+		<div class="radio">
+			<label>
+				<input type="radio" name="Hraðaþrautin" value="Ekki trompast">
+				Ekki trompast
+			</label>
+		</div>
+		<div class="radio">
+			<label>
+				<input type="radio" name="Hraðaþrautin" value="Öfugur stafli">
+				Öfugur stafli
+			</label>
+		</div>
+		<div class="radio">
+			<label>
+				<input type="radio" name="Hraðaþrautin" value="Tengingaleikur">
+				Tengingaleikur
+			</label>
+		</div>
+		<div class="radio">
+			<label>
+				<input type="radio" name="Hraðaþrautin" value="Jón eplabóndi">
+				Jón eplabóndi
+			</label>
+		</div>
+		<div class="radio">
+			<label>
+				<input type="radio" name="Hraðaþrautin" value="Hangs">
+				Hangs
+			</label>
+		</div>
+
+	</div>
+
+	<div class="col-md-6">
+		<h3>Staðarflokkurinn</h3>
+		<div class="radio">
+			<label>
+				<input type="radio" name="Staðarflokkurinn" value="Skókast">
+				Skókast
+			</label>
+		</div>
+		<div class="radio">
+			<label>
+				<input type="radio" name="Staðarflokkurinn" value="Kexkökufés">
+				Kexkökufés
+			</label>
+		</div>
+		<div class="radio">
+			<label>
+				<input type="radio" name="Staðarflokkurinn" value="Ekki trompast">
+				Ekki trompast
+			</label>
+		</div>
+		<div class="radio">
+			<label>
+				<input type="radio" name="Staðarflokkurinn" value="Öfugur stafli">
+				Öfugur stafli
+			</label>
+		</div>
+		<div class="radio">
+			<label>
+				<input type="radio" name="Staðarflokkurinn" value="Tengingaleikur">
+				Tengingaleikur
+			</label>
+		</div>
+		<div class="radio">
+			<label>
+				<input type="radio" name="Staðarflokkurinn" value="Jón eplabóndi">
+				Jón eplabóndi
+			</label>
+		</div>
+		<div class="radio">
+			<label>
+				<input type="radio" name="Staðarflokkurinn" value="Hangs">
+				Hangs
+			</label>
+		</div>
+
+
+		<h3>Skemmtilegi flokkurinn</h3>
+		<div class="radio">
+			<label>
+				<input type="radio" name="Skemmtilegi-flokkurinn" value="Skókast">
+				Skókast
+			</label>
+		</div>
+		<div class="radio">
+			<label>
+				<input type="radio" name="Skemmtilegi-flokkurinn" value="Kexkökufés">
+				Kexkökufés
+			</label>
+		</div>
+		<div class="radio">
+			<label>
+				<input type="radio" name="Skemmtilegi-flokkurinn" value="Ekki trompast">
+				Ekki trompast
+			</label>
+		</div>
+		<div class="radio">
+			<label>
+				<input type="radio" name="Skemmtilegi-flokkurinn" value="Öfugur stafli">
+				Öfugur stafli
+			</label>
+		</div>
+		<div class="radio">
+			<label>
+				<input type="radio" name="Skemmtilegi-flokkurinn" value="Tengingaleikur">
+				Tengingaleikur
+			</label>
+		</div>
+		<div class="radio">
+			<label>
+				<input type="radio" name="Skemmtilegi-flokkurinn" value="Jón eplabóndi">
+				Jón eplabóndi
+			</label>
+		</div>
+		<div class="radio">
+			<label>
+				<input type="radio" name="Skemmtilegi-flokkurinn" value="Hangs">
+				Hangs
+			</label>
+		</div>
+	</div>
+	</div>
+
+
+
+	<input type="submit" value="Senda" class="btn btn-danger">
+</form>

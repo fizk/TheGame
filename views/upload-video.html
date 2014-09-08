@@ -1,0 +1,95 @@
+{% extends 'layout.html' %}
+{% block body %}
+<main role="main" class="game video-upload">
+
+	<div class="container upload-form">
+		<div >
+
+			<form id="credential-form-simple" role="form" class="form-horizontal" action="/video/simple-submit" method="post" enctype="multipart/form-data">
+				<h1>Skráning</h1>
+				<div class="form-group">
+					<!--div class="col-md-10"-->
+						<!-- label>Nafn myndbands</label-->
+                        <!--i class="icon-video"></i><input type="text" class="videoname" name="video_name" class="form-control" placeholder="Nafn myndbands" required />
+					</div-->
+					<div class="col-md-2"></div>
+				</div>
+				<div class="form-group">
+					<div class="col-md-6">
+						<!--label>Fullt nafn</label-->
+						<input type="text" name="name" class="form-control" placeholder="Fullt nafn" required />
+						<!--label>Sími</label-->
+						<input type="text" name="phone" class="form-control" placeholder="SÍMI" required />
+					</div>
+					<div class="col-md-6">
+						<!--label>Netfang</label-->
+						<input type="email" name="email" class="form-control" placeholder="Netfang" required />
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-md-6">
+						<div class="checkbox">
+                            <input type="checkbox" id="checkbox-input-1" name="category" value="N1 flokkurinn">
+							<label for="checkbox-input-1" class="input-helper input-helper--checkbox">N1 flokkurinn <span> ( leystu þraut á N1 stöð )</span></label>
+
+
+						</div>
+						<div class="checkbox">
+                            <input type="checkbox" id="checkbox-input-2" name="category" value="Sniðugi flokkurinn">
+                            <label for="checkbox-input-2" class="input-helper input-helper--checkbox">Sniðugi flokkurinn <span>( búðu til sniðuga þraut og sendu okkur )</span></label>
+
+						</div>
+
+
+					</div>
+					<div class="col-md-6">
+                        <div class="checkbox">
+                            <input type="checkbox" id="checkbox-input-3" name="category" value="Hraðaþrautin">
+                            <label for="checkbox-input-3" class="input-helper input-helper--checkbox">Hraðaþrautin <span>( leystu þrautina „Öfugur stafli“ hratt )</span></label>
+
+                        </div>
+                        <div class="checkbox">
+                            <input type="checkbox" id="checkbox-input-6" name="category" value="Staðarflokkurinn">
+                            <label for="checkbox-input-6" class="input-helper input-helper--checkbox">Staðarflokkurinn <span>( leystu þrautina á frumlegasta staðnum)</span></label>
+
+                        </div>
+
+                        <div class="checkbox">
+                            <input type="checkbox" id="checkbox-input-8" name="category" value="Skemmtilegi flokkurinn">
+                            <label for="checkbox-input-8" class="input-helper input-helper--checkbox">Skemmtilegi flokkurinn <span>( leystu þrautina á eins skemmtilegan hátt og þú getur )</span></label>
+
+                        </div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-md-6">
+						<div class="checkbox termcheck">
+                            <input type="checkbox" id="checkbox-input-9" name="accept" class="whitebox" value="true" required>
+                            <label for="checkbox-input-9" class="input-helper input-helper--checkbox">Ég samþykki <a href="/skilmalar">skilmála og reglur</a> leikjarins</label>
+						</div>
+					</div>
+					<div class="col-md-6">
+
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-md-6">
+						<input type="file" name="file" class="form-control" />
+					</div>
+					<div class="col-md-6"></div>
+				</div>
+				<div class="form-group">
+					<div class="col-md-6">
+						<input type="submit" class="btn btn-send" value="Senda" />
+					</div>
+					<div class="col-md-6"></div>
+				</div>
+
+			</form>
+
+		</div>
+
+	</div>
+</main>
+
+{% endblock %}

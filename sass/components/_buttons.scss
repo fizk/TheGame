@@ -1,0 +1,65 @@
+
+@import "compass/css3/transition";
+
+	.btn{
+		border-radius: 0;
+		border:none;
+		padding: rhythm(1/2,$font-size-base) rhythm(1,$font-size-base);
+
+
+	}
+
+	.btn-default{
+		background-color: $color-blue-middle;
+		color: $color-white;
+		font-weight: 700;
+		text-transform: uppercase;
+		@include transition(background-color $animation-speed);
+        @include adjust-font-size-to(24px,0.2);
+		&:hover{
+			background-color: shade($color-blue-middle,5%);
+			border: none;
+			color: $color-white;
+		}
+
+      @include breakpoint-to(480px){
+        @include adjust-font-size-to(18px,0.2);
+      }
+	}
+
+.btn-send{
+  background-color: $color-blue-middle;
+  color: $color-white;
+  font-weight: 700;
+  text-transform: uppercase;
+  @include transition(background-color $animation-speed);
+  @include adjust-font-size-to(24px,1);
+  text-align:center;
+  &:hover{
+    background-color: shade($color-blue-middle,5%);
+    border: none;
+    color: $color-white;
+  }
+
+  @include breakpoint-to(480px){
+    @include adjust-font-size-to(18px,1);
+  }
+}
+
+	.btn-primary{
+		background-color: transparent;
+		color: $color-blue-middle;
+		font-weight: 700;
+		text-transform: uppercase;
+		border: 2px solid $color-blue-middle;
+        @include adjust-font-size-to(24px,0.2);
+		@include transition(border $animation-speed);
+		&:hover{
+			border: 2px solid shade($color-blue-middle,5%);
+			background-color: transparent;
+			color: shade($color-blue-middle,5%);
+		}
+      @include breakpoint-to(480px){
+        @include adjust-font-size-to(18px,0.2);
+      }
+	}

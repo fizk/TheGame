@@ -1,0 +1,19 @@
+
+@import "compass/typography/vertical_rhythm";
+
+	%body-text{
+		h1{}
+		h2{
+			@include adjust-font-size-to($font-size-middle,1,$font-size-base);
+
+		}
+		h3{
+			@include adjust-font-size-to($font-size-middle,1,$font-size-base);
+			@include margin-trailer(1/2);
+			font-weight: 700;
+		}
+		p{
+			@include margin-leader(1/2);
+			@include margin-trailer(1/2);
+		}
+	}

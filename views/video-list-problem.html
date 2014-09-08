@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+
+
+{% block body %}
+<main class="game gallery">
+	<div class="container">
+		<h1></h1>
+		<ul class="video-list-problem">
+			{% for video in videos %}
+			<li>
+				<h1>{{video.name}}</h1>
+				<time>{{video.date|date('Y-m-d H:i')}}</time>
+				{% if !video.file || !video.file.originalname %}
+				<p>Myndband hlóðst ekki upp</p>
+				{% else %}
+				<p>Þarf að encode'a</p>
+				{% endif %}
+				<dl>
+					<dt>Símanúmer</dt>
+					<dd>{{video.phone}}</dd>
+					<dt>Netfang</dt>
+					<dd>{{video.email}}</dd>
+				</dl>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+
+</main>
+{% endblock %}
